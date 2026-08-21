@@ -1,0 +1,3 @@
+const BANCO_QUESTOES = [];
+
+window.BANCO_QUESTOES = BANCO_QUESTOES;
