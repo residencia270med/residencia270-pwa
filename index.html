@@ -184,10 +184,26 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
 });
 
-</script><script src="./banco-questoes.js"></script><script>
-<script>
-render();
 </script>
+
+<script src="./banco-questoes.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    render();
+});
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+}
+</script>
+
+</body>
+</html>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("./sw.js").catch(function(){});
