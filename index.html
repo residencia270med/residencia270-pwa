@@ -187,6 +187,164 @@ document.addEventListener("DOMContentLoaded",()=>{
 </script>
 
 <script src="./banco-questoes.js"></script>
+<script>
+/* ============================================================
+   INTEGRAÇÃO REAL — BANCO MESTRE 3.0
+   Med Aprovação 270+
+   ============================================================ */
+
+window.__bancoNoAtual = "raiz";
+
+function renderToday() {
+
+  const noId = window.__bancoNoAtual || "raiz";
+  const no = obterNoArvore(noId);
+  const filhos = obterFilhosArvore(noId);
+  const questoes = obterQuestoesDoNo(noId);
+
+  if (!no) return;
+
+  const caminho = obterCaminhoArvore(noId);
+
+  let html = `
+    <div class="card">
+
+      <div class="section-title">
+        <div>
+          <h2>📚 Banco Mestre</h2>
+          <div class="muted">
+            Navegação oficial do Med Aprovação 270+
+          </div>
+        </div>
+
+        ${
+          noId !== "raiz"
+          ? `<button class="secondary"
+               onclick="window.__bancoNoAtual='${no.parentId}';renderToday()">
+               ← Voltar
+             </button>`
+          : ""
+        }
+      </div>
+
+      <div class="notice">
+        <b>Caminho:</b>
+        ${caminho.map(x => esc(x.nome)).join(" → ")}
+      </div>
+
+      <br>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="muted">Nível atual</span>
+          <b>${esc(no.nome)}</b>
+        </div>
+
+        <div class="stat">
+          <span class="muted">Subníveis</span>
+          <b>${filhos.length}</b>
+        </div>
+
+        <div class="stat">
+          <span class="muted">Questões</span>
+          <b>${questoes.length}</b>
+        </div>
+
+        <div class="stat">
+          <span class="muted">Navegação</span>
+          <b>${no.navegavel ? "Ativa" : "Final"}</b>
+        </div>
+      </div>
+  `;
+
+  if (filhos.length) {
+
+    html += `
+      <div class="section-title">
+        <h2>Áreas e temas</h2>
+        <span class="small muted">
+          Toque para entrar
+        </span>
+      </div>
+
+      <div class="grid">
+    `;
+
+    filhos.forEach(filho => {
+
+      const quantidade =
+        obterQuestoesDoNo(filho.id).length;
+
+      html += `
+        <div class="block"
+             style="cursor:pointer"
+             onclick="window.__bancoNoAtual='${filho.id}';renderToday()">
+
+          <div class="bt">
+            <div>
+              <div class="area">
+                ${esc(filho.nome)}
+              </div>
+
+              <div class="topic">
+                ${esc(filho.tipo || "tema")}
+              </div>
+            </div>
+
+            ${
+              filho.filhos && filho.filhos.length
+              ? `<span class="badge Ouro">›</span>`
+              : ""
+            }
+          </div>
+
+          <div class="muted" style="margin-top:8px">
+            ${filho.filhos ? filho.filhos.length : 0}
+            subníveis
+            •
+            ${quantidade}
+            questões cadastradas
+          </div>
+
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+
+  } else {
+
+    html += `
+      <div class="card">
+        <h2>📌 ${esc(no.nome)}</h2>
+
+        <div class="notice">
+          Este é um nível terminal do Banco Mestre.
+        </div>
+
+        <br>
+
+        <b>Questões cadastradas neste nível:</b>
+
+        <div class="big" style="margin-top:8px">
+          ${questoes.length}
+        </div>
+
+        <div class="muted">
+          A inclusão/ampliação das questões será feita
+          posteriormente, conforme planejado.
+        </div>
+      </div>
+    `;
+  }
+
+  html += `
+    </div>
+  `;
+
+  document.getElementById("today").innerHTML = html;
+}
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
