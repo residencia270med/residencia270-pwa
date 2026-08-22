@@ -183,8 +183,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   });
 });
-render();
+
 </script><script src="./banco-questoes.js"></script><script>
+<script>
+render();
+</script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("./sw.js").catch(function(){});
