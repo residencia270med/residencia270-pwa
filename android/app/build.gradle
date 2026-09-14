@@ -1,5 +1,5 @@
 plugins { id 'com.android.application' }
 
-android { namespace 'br.com.residencia270med.cronogramadeestud1'; compileSdk 35
-    defaultConfig { applicationId 'br.com.residencia270med.cronogramadeestud1'; minSdk 23; targetSdk 35; versionCode 2; versionName '1.1' }
+android { namespace 'br.com.residencia270med.cronogramadeestud2'; compileSdk 35
+    defaultConfig { applicationId 'br.com.residencia270med.cronogramadeestud2'; minSdk 23; targetSdk 35; versionCode 3; versionName '1.2' }
 }
