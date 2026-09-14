@@ -19,27 +19,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         showMessage("Cronograma de Estudos APP\n\nCarregando...");
-        try {
-            getWindow().getDecorView().post(new Runnable() {
-                @Override public void run() { startWebView(); }
-            });
-        } catch (Throwable t) {
-            showMessage("Cronograma de Estudos APP\n\nNão foi possível iniciar a interface.\n\n" + t.getClass().getSimpleName());
-        }
+        getWindow().getDecorView().post(new Runnable() {
+            @Override public void run() { startWebView(); }
+        });
     }
 
     private void startWebView() {
         try {
-            webView = new WebView(getApplicationContext());
+            webView = new WebView(this);
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             webView.setLongClickable(false);
             webView.setHapticFeedbackEnabled(false);
-            webView.setWebViewClient(new WebViewClient() {
-                @Override public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-                    showMessage("Cronograma de Estudos APP\n\nO componente de visualização foi reiniciado.\n\nAbra o aplicativo novamente.");
-                    return true;
-                }
-            });
             WebSettings s = webView.getSettings();
             s.setJavaScriptEnabled(true);
             s.setDomStorageEnabled(true);
@@ -47,8 +37,14 @@ public class MainActivity extends Activity {
             s.setAllowContentAccess(true);
             s.setBuiltInZoomControls(false);
             s.setDisplayZoomControls(false);
-            webView.loadUrl("file:///android_asset/cronograma.html");
+            webView.setWebViewClient(new WebViewClient() {
+                @Override public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+                    showMessage("Cronograma de Estudos APP\n\nO componente de visualização foi reiniciado.\n\nAbra o aplicativo novamente.");
+                    return true;
+                }
+            });
             setContentView(webView);
+            webView.loadUrl("file:///android_asset/cronograma.html");
         } catch (Throwable t) {
             showMessage("Cronograma de Estudos APP\n\nNão foi possível iniciar a interface.\n\n" + t.getClass().getSimpleName());
         }
