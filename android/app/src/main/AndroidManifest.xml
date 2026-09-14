@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
     <application android:theme="@style/AppTheme" android:label="Cronograma de Estudos APP" android:icon="@drawable/app_icon" android:roundIcon="@drawable/app_icon" android:usesCleartextTraffic="false" android:allowBackup="false" android:supportsRtl="true">
-        <activity android:name="br.com.residencia270med.cronogramadeestud1.MainActivity" android:screenOrientation="unspecified" android:configChanges="orientation|screenSize|smallestScreenSize" android:exported="true">
+        <activity android:name="br.com.residencia270med.cronogramadeestud2.MainActivity" android:screenOrientation="unspecified" android:configChanges="orientation|screenSize|smallestScreenSize" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
