@@ -20,8 +20,8 @@ jobs:
           java-version: '17'
       - name: Assemble authenticated HTML
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          SUPABASE_URL: https://vcdfemnfpaowoiuyjrgl.supabase.co
+          SUPABASE_PUBLISHABLE_KEY: sb_publishable_15jeLJhkInqsK0Doj3lyGw_2XY0WLR8
         run: |
           mkdir -p android/app/src/main/assets
           cat payload/cronograma.part*.b64 > /tmp/cronograma.b64
