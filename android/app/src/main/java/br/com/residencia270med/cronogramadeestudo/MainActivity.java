@@ -1,4 +1,4 @@
-package br.com.residencia270med.cronogramadeestud1;
+package br.com.residencia270med.cronogramadeestud2;
 
 import android.app.Activity;
 import android.os.Bundle;
