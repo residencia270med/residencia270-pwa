@@ -4,7 +4,6 @@ on:
     paths:
       - 'android/**'
       - '.github/workflows/build-apk.yml'
-      - 'cronograma.html.gz'
   workflow_dispatch:
 jobs:
   build:
@@ -24,7 +23,7 @@ jobs:
       - name: Prepare HTML asset
         run: |
           mkdir -p android/app/src/main/assets
-          gunzip -c cronograma.html.gz > android/app/src/main/assets/cronograma.html
+          curl -L --fail https://raw.githubusercontent.com/residencia270med/residencia270-pwa/main/index.html -o android/app/src/main/assets/cronograma.html
       - name: Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
