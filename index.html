@@ -131,4 +131,4 @@ function resetProgress(){state.done={};save();renderToday();renderDayGrid();rend
 try{setup();}catch(e){console.error('Boot secundário:',e);try{renderToday();renderDayGrid();renderStats();}catch(e2){console.error('Boot principal:',e2);}}
 </script>
 
-<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}</script></body></html>
+</body></html>
