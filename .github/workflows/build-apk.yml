@@ -22,14 +22,9 @@ jobs:
       - name: Assemble final HTML
         run: |
           mkdir -p android/app/src/main/assets
-          cat payload/cronograma.part*.b64 > /tmp/cronograma.b64
-          base64 -d /tmp/cronograma.b64 | gunzip > android/app/src/main/assets/cronograma.html
-          python tools/reorganize_schedule.py
-          python android/patch_pending.py
+          cp index.html android/app/src/main/assets/cronograma.html
           test -s android/app/src/main/assets/cronograma.html
-          grep -q 'Pendências acumuladas' android/app/src/main/assets/cronograma.html
-          grep -q 'function accumulatedPending' android/app/src/main/assets/cronograma.html
-          grep -q 'Cronograma de Estudos APP' android/app/src/main/assets/cronograma.html || true
+          grep -q 'Cronograma de Estudos APP' android/app/src/main/assets/cronograma.html
       - name: Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
